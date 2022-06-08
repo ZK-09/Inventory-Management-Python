@@ -11,117 +11,55 @@
 ## Section = [1,2,3,4]
 ## item = 1,2,3,4
 
+def warehouse_storage (fileName):
+    warehouse = []
+    for i in range (5):
+        section = []
+        partID = input("Enter Part's ID : ")
+        part = input ("Enter Part : ")
+        amount = input ("Enter Amount : ")
+
+        section.append(partID )
+        section.append(part)
+        section.append(amount)
+
+        warehouse.append(section)
+        warehouse.sort()
+        print("\n")
+    
+    file = open(fileName,'w')
+    for section in warehouse:   
+        for item in section:
+            file.write(item)
+            file.write("/")
+        file.write('\n')
+    file.close()
+    
+    return warehouse
+
 def writeFile(fileName, warehouse, section):
     file = open(fileName,'w')
     for section in warehouse:   
         for item in section:
             file.write(item)
-            file.write('\t')
+            file.write("/")
         file.write('\n')
     file.close()
     return writeFile
-
-def firstWarehouse ():
-    vGolf = []
-    for i in range (5):
-        section = []
-        partID = input("Enter Part's ID : ")
-        part = input ("Enter Part : ")
-        amount = input ("Enter Amount : ")
-
-        section.append(partID)
-        section.append(part)
-        section.append(amount)
-
-        vGolf.append(section)
-        vGolf.sort()
-        print("\n")
-
-    writeFile('vGolf.txt',vGolf,section)
-
-    return vGolf
-
-def secondWarehouse ():
-    vGolf_R = []
-    for i in range (5):
-        section = []
-        partID = input("Enter Part's ID : ")
-        part = input ("Enter Part : ")
-        amount = input ("Enter Amount : ")
-
-        section.append(partID)
-        section.append(part)
-        section.append(amount)
-
-        vGolf_R.append(section)
-        vGolf_R.sort()
-        print("\n")
-
-    writeFile('vGolf_R.txt',vGolf_R,section)
-
-    return vGolf_R
-
-def thirdWarehouse():
-    vGolf_G = []
-    for i in range (5):
-        section = []
-        partID = input("Enter Part's ID : ")
-        part = input ("Enter Part : ")
-        amount = input ("Enter Amount : ")
-
-        section.append(partID)
-        section.append(part)
-        section.append(amount)
-
-        vGolf_G.append(section)
-        vGolf_G.sort()
-        print("\n")
-
-    writeFile('vGolf_G.txt',vGolf_G,section)
-
-    return vGolf_G
 
 #########################################################################################
 
 ### Printing Parts' Amount below 10
 
-# Function of condition
-def checkCondition(line):
-    if line [-2:] < '10':
-        print (line)
-    else:
-        print ('Amount Sufficient')
-    return checkCondition
-
-def itemBelow_vGolf ():
-    vGolffile = open('vGolf.txt','r')
-    for line in vGolffile:
+def insufficient_check (filename) :
+    file = open (filename, 'r')
+    for line in file :
         line = line.rstrip()
-
-        checkCondition(line)
-    vGolffile.close()
-    
-    return itemBelow_vGolf
-
-def itemBelow_vGolf_R () :
-    vGolf_Rfile = open ('vGolf_R.txt','r')
-    for line in vGolf_Rfile:
-        line = line.rstrip()
-     
-        checkCondition(line)
-    vGolf_Rfile.close()
-    
-    return itemBelow_vGolf_R
-
-def itemBelow_vGolf_G ():
-    vGolf_Gfile = open ('vGolf_G.txt','r')
-    for line in vGolf_Gfile:
-        line = line.rstrip ()
-        
-        checkCondition(line)
-    vGolf_Gfile.close()
-    
-    return itemBelow_vGolf_G
+        if line [-2:] < '10':
+            print (line)
+        else:
+            print ('Amount Sufficient')
+    file.close()
 
 ###########################################################################################
 
@@ -276,7 +214,7 @@ def supplierMoreOne ():
         for supplies in supplied:
             for item in supplies:
                 supplyMore_File.write(item)
-                supplyMore_File.write("\t")
+                supplyMore_File.write("/")
             supplyMore_File.write("\n")
         supplyMore_File.close()
         
@@ -294,7 +232,7 @@ def updateCondition(itemCode, inputItem, fileName):
     newData = []
     for line in data:
         line = line.rstrip()
-        newLine = line.rsplit("\t")
+        newLine = line.rsplit("/")
         if(newLine [0] == itemCode):
             newLine [2] = inputItem
         newData.append(newLine)
@@ -460,7 +398,7 @@ def createFunction(fileName):
     file = open(fileName,'a')
     for item in section:
         file.write(item)
-        file.write('\t')
+        file.write('/')
     file.write('\n')
     file.close()
     
@@ -556,7 +494,7 @@ def searchSuppliedMore():
 ###############################################################################
 
 #### Print FUNCTION
-def printFunction(fileName):
+def printRecord(fileName):
     file = open(fileName,'r')
     for line in file:
         line = line.rstrip()
@@ -565,25 +503,25 @@ def printFunction(fileName):
     
     return printFunction
 
-def printvGolfRecord():
-    printFunction('vGolf.txt')
+# def printvGolfRecord():
+#     printFunction('vGolf.txt')
     
-    return printvGolfRecord
+#     return printvGolfRecord
 
-def printvGolf_RRecord ():
-    printFunction('vGolf_R.txt')
+# def printvGolf_RRecord ():
+#     printFunction('vGolf_R.txt')
     
-    return printvGolf_RRecord
+#     return printvGolf_RRecord
 
-def printvGolf_GRecord ():
-    printFunction('vGolf_G.txt')
+# def printvGolf_GRecord ():
+#     printFunction('vGolf_G.txt')
     
-    return printvGolf_GRecord
+#     return printvGolf_GRecord
 
-def printSupplierMoreOne():
-    printFunction('Supplied_More_1.txt')
+# def printSupplierMoreOne():
+#     printFunction('Supplied_More_1.txt')
     
-    return printSupplierMoreOne
+#     return printSupplierMoreOne
 
 ################################################################################
 ################################################################################
@@ -723,11 +661,11 @@ def menu():
             if choice == 1:
                 alphabet = input("Select Which Warehouse : ")
                 if alphabet == 'A' or alphabet == 'a':
-                    firstWarehouse()
+                    warehouse_storage ('vGolf.txt')
                 elif alphabet == 'B' or alphabet == 'b':
-                    secondWarehouse ()
+                    warehouse_storage ('vGolf_R.txt')
                 else:
-                    thirdWarehouse()
+                    warehouse_storage ('vGolf_G.txt')
 
             elif choice == 2 :
                 menu_0()
@@ -739,7 +677,7 @@ def menu():
                 supplierMoreOne()
 
             elif choice == 5 :
-                printSupplierMoreOne()
+                printRecord('Supplied_More_1.txt')
 
             elif choice == 6 :
                 alphabet_2 = input ("Check Which Section : ")
@@ -762,20 +700,20 @@ def menu():
             elif choice == 8:
                 alphabet_4 = input ("Check Which Warehouse : ")
                 if alphabet_4 == 'A' or alphabet_4 == 'a':
-                    printvGolfRecord()
+                    printRecord('vGolf.txt')
                 elif alphabet_4 == 'B' or alphabet_4 == 'b':
-                    printvGolf_RRecord()
+                    printRecord('vGolf_R.txt')
                 else:
-                    printvGolf_GRecord()
+                    printRecord('vGolf_G.txt')
 
             elif choice == 9:
                 alphabet_5 = input ("Check Which Warehouse : ")
                 if alphabet_5 == 'A' or alphabet_5 == 'a':
-                    itemBelow_vGolf()
+                    insufficient_check ('vGolf.txt')
                 elif alphabet_5 == 'B' or alphabet_5 == 'b':
-                    itemBelow_vGolf_R()
+                    insufficient_check ('vGolf_R.txt')
                 else:
-                    itemBelow_vGolf_G()
+                    insufficient_check ('vGolf_G.txt')
 
             elif choice == 10 :
                 alphabet_6 = input ("Select Section to Search : ")
@@ -793,4 +731,6 @@ def menu():
             else :
                 print (" THANK YOU !! ")
                 exit ()
-menu()
+                
+if __name__ == '__main__' :
+    menu()
