@@ -1,9 +1,0 @@
-ACEVR4	Air-Cooled_R Engine	4	
-CVR2	Clutch_R	3	
-GBVR1	Gear Box_R	4	
-MCEVR3	Multi-Cylinder_R Engine	3	
-SVR5	Steering_R	5	
-NEWID1	NEWPART !	00	
-NEWID2	NEWPART	00	
-NEWID1	NEWPART !	00	
-NEWID2	NEWPART	00	

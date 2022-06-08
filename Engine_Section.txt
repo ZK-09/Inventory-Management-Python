@@ -1,0 +1,18 @@
+MCEV3	Multi-Cylinder Engine 	45	
+
+
+ACEV4	Air-Cooled Engine 	34	
+
+
+MCEVR3	Multi-Cylinder_R Engine	90	
+
+
+ACEVR4	Air-Cooled_R Engine	67	
+
+
+MCEVG3	Multi-Cylinder_G Engine	34	
+
+
+ACEVG4	Air-Cooled Engine	34	
+
+
